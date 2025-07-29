@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Online Learning Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav class="topnav">
+            <span class="logo">Online Learning</span>
+            <a href="index.html">Home</a>
+            <a href="learn-programming.html">Learn Programming</a>
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Welcome, <span id="user-name"></span>!</h2>
+            <nav>
+                <a href="learn-programming.html" class="cta-btn">Learn Programming</a>
+            </nav>
+        </section>
+    </main>
+    <script>
+        document.getElementById('user-name').textContent = localStorage.getItem('loggedInUser') || 'User';
+    </script>
+</body>
+</html> 

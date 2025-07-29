@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn JavaScript - Online Learning Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .lang-navbar {
+            display: flex;
+            justify-content: center;
+            background: #e8f5e9;
+            border-bottom: 2px solid #008000;
+            padding: 0.5em 0;
+            margin-bottom: 2em;
+        }
+        .lang-navbar a {
+            color: #008000;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            margin: 0 2em;
+            padding: 0.5em 1.5em;
+            border-radius: 6px 6px 0 0;
+            transition: background 0.2s, color 0.2s;
+        }
+        .lang-navbar a.active, .lang-navbar a:hover {
+            background: #008000;
+            color: #fff;
+        }
+        .sidebar {
+            width: 260px;
+            min-width: 200px;
+            max-width: 300px;
+            background: #e8f5e9;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,128,0,0.05);
+            margin-right: 2em;
+            padding: 1.5em 1em;
+            position: sticky;
+            top: 2em;
+            height: fit-content;
+        }
+        .sidebar h3 {
+            font-size: 1.1em;
+            color: #008000;
+            margin-bottom: 1em;
+            font-weight: 600;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .sidebar li {
+            margin-bottom: 1em;
+        }
+        .sidebar a {
+            color: #008000;
+            text-decoration: none;
+            font-size: 1.05em;
+            font-weight: 500;
+            transition: color 0.2s;
+            display: block;
+            padding: 0.4em 0.8em;
+            border-radius: 4px;
+        }
+        .sidebar a.active, .sidebar a:hover {
+            background: #c8e6c9;
+            color: #006400;
+        }
+        .content-area {
+            flex: 1 1 0%;
+            max-width: 900px;
+            min-width: 0;
+        }
+        .topic-title {
+            color: #008000;
+            font-size: 2em;
+            font-weight: 600;
+            margin-bottom: 0.5em;
+        }
+        .topic-desc {
+            font-size: 1.1em;
+            margin-bottom: 1.5em;
+        }
+        @media (max-width: 1100px) {
+            .sidebar { display: none; }
+            main { flex-direction: column; align-items: stretch; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="topnav">
+            <span class="logo">Online Learning</span>
+            <a href="index.html">Home</a>
+            <a href="learn-programming.html">Learn Programming</a>
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+        </nav>
+    </header>
+    <nav class="lang-navbar">
+        <a href="html.html">HTML</a>
+        <a href="css.html">CSS</a>
+        <a href="javascript.html" class="active">JavaScript</a>
+        <a href="cpp.html">C++</a>
+    </nav>
+    <main style="display: flex;">
+        <aside class="sidebar">
+            <h3>JavaScript Roadmap</h3>
+            <ul id="topic-list">
+                <li><a href="#" class="active" onclick="showTopic('intro', event)">Introduction to JavaScript</a></li>
+                <li><a href="#" onclick="showTopic('syntax', event)">Syntax & Variables</a></li>
+                <li><a href="#" onclick="showTopic('datatypes', event)">Data Types</a></li>
+                <li><a href="#" onclick="showTopic('operators', event)">Operators</a></li>
+                <li><a href="#" onclick="showTopic('control', event)">Control Structures</a></li>
+                <li><a href="#" onclick="showTopic('functions', event)">Functions</a></li>
+                <li><a href="#" onclick="showTopic('objects', event)">Objects</a></li>
+                <li><a href="#" onclick="showTopic('dom', event)">DOM Manipulation</a></li>
+                <li><a href="#" onclick="showTopic('es6', event)">ES6+ Features</a></li>
+                <li><a href="#" onclick="showTopic('async', event)">Asynchronous JS</a></li>
+                <li><a href="#" onclick="showTopic('api', event)">APIs & AJAX</a></li>
+                <li><a href="#" onclick="showTopic('best', event)">Best Practices</a></li>
+            </ul>
+        </aside>
+        <section class="content-area" id="topic-content">
+            <!-- Content will be loaded here -->
+        </section>
+    </main>
+    <script>
+        const topics = {
+            intro: {
+                title: 'Introduction to JavaScript',
+                desc: 'JavaScript is a versatile programming language that runs in the browser and on servers (Node.js). It makes web pages interactive and dynamic.',
+                code: '',
+            },
+            syntax: {
+                title: 'Syntax & Variables',
+                desc: 'JavaScript syntax is similar to C, Java, and other languages. Variables can be declared with var, let, or const.',
+                code: 'let x = 5;\nconst name = "Alice";',
+            },
+            datatypes: {
+                title: 'Data Types',
+                desc: 'JavaScript supports string, number, boolean, null, undefined, object, and symbol.',
+                code: 'let str = "hello";\nlet n = 42;\nlet isOk = true;',
+            },
+            operators: {
+                title: 'Operators',
+                desc: 'Arithmetic (+, -, *, /), assignment (=, +=, -=), comparison (==, ===, !=, !==, >, <), logical (&&, ||, !), etc.',
+                code: 'let sum = 2 + 3;\nif (a > b) { ... }',
+            },
+            control: {
+                title: 'Control Structures',
+                desc: 'if, else, switch, for, while, do-while, break, continue.',
+                code: 'for (let i = 0; i < 5; i++) {\n  console.log(i);\n}',
+            },
+            functions: {
+                title: 'Functions',
+                desc: 'Functions are reusable blocks of code. Can be declared or expressed as variables.',
+                code: 'function greet(name) {\n  return "Hello, " + name;\n}\nconst add = (a, b) => a + b;',
+            },
+            objects: {
+                title: 'Objects',
+                desc: 'Objects store key-value pairs. Arrays are special objects.',
+                code: 'const person = { name: "Alice", age: 25 };\nlet arr = [1, 2, 3];',
+            },
+            dom: {
+                title: 'DOM Manipulation',
+                desc: 'JavaScript can change HTML and CSS using the Document Object Model (DOM).',
+                code: 'document.getElementById("demo").textContent = "Hello!";',
+            },
+            es6: {
+                title: 'ES6+ Features',
+                desc: 'let, const, arrow functions, template literals, destructuring, classes, modules, etc.',
+                code: 'const greet = name => `Hello, ${name}`;\nconst [a, b] = [1, 2];',
+            },
+            async: {
+                title: 'Asynchronous JS',
+                desc: 'Callbacks, Promises, async/await for handling asynchronous operations.',
+                code: 'async function fetchData() {\n  const res = await fetch(url);\n  const data = await res.json();\n}',
+            },
+            api: {
+                title: 'APIs & AJAX',
+                desc: 'JavaScript can fetch data from servers using APIs and AJAX (XMLHttpRequest, fetch).',
+                code: 'fetch("https://api.example.com/data")\n  .then(res => res.json())\n  .then(data => console.log(data));',
+            },
+            best: {
+                title: 'Best Practices',
+                desc: 'Use let/const, keep code modular, use strict mode, handle errors, comment code, avoid global variables.',
+                code: '',
+            },
+        };
+        function showTopic(key, e) {
+            if (e) e.preventDefault();
+            document.querySelectorAll('#topic-list a').forEach(a => a.classList.remove('active'));
+            const link = document.querySelector(`#topic-list a[onclick*="'${key}'"]`);
+            if (link) link.classList.add('active');
+            const topic = topics[key];
+            let html = `<div class="topic-title">${topic.title}</div>`;
+            html += `<div class="topic-desc">${topic.desc}</div>`;
+            if (topic.code) {
+                html += `<pre><code>${topic.code.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>`;
+            }
+            document.getElementById('topic-content').innerHTML = html;
+        }
+        showTopic('intro');
+    </script>
+</body>
+</html> 

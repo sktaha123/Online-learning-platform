@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn HTML - Online Learning Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .lang-navbar {
+            display: flex;
+            justify-content: center;
+            background: #e8f5e9;
+            border-bottom: 2px solid #008000;
+            padding: 0.5em 0;
+            margin-bottom: 2em;
+        }
+        .lang-navbar a {
+            color: #008000;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            margin: 0 2em;
+            padding: 0.5em 1.5em;
+            border-radius: 6px 6px 0 0;
+            transition: background 0.2s, color 0.2s;
+        }
+        .lang-navbar a.active, .lang-navbar a:hover {
+            background: #008000;
+            color: #fff;
+        }
+        .sidebar {
+            width: 260px;
+            min-width: 200px;
+            max-width: 300px;
+            background: #e8f5e9;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,128,0,0.05);
+            margin-right: 2em;
+            padding: 1.5em 1em;
+            position: sticky;
+            top: 2em;
+            height: fit-content;
+        }
+        .sidebar h3 {
+            font-size: 1.1em;
+            color: #008000;
+            margin-bottom: 1em;
+            font-weight: 600;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .sidebar li {
+            margin-bottom: 1em;
+        }
+        .sidebar a {
+            color: #008000;
+            text-decoration: none;
+            font-size: 1.05em;
+            font-weight: 500;
+            transition: color 0.2s;
+            display: block;
+            padding: 0.4em 0.8em;
+            border-radius: 4px;
+        }
+        .sidebar a.active, .sidebar a:hover {
+            background: #c8e6c9;
+            color: #006400;
+        }
+        .content-area {
+            flex: 1 1 0%;
+            max-width: 900px;
+            min-width: 0;
+        }
+        .topic-title {
+            color: #008000;
+            font-size: 2em;
+            font-weight: 600;
+            margin-bottom: 0.5em;
+        }
+        .topic-desc {
+            font-size: 1.1em;
+            margin-bottom: 1.5em;
+        }
+        .output-img {
+            margin: 1.5em 0;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            max-width: 100%;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        @media (max-width: 1100px) {
+            .sidebar { display: none; }
+            main { flex-direction: column; align-items: stretch; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="topnav">
+            <span class="logo">Online Learning</span>
+            <a href="index.html">Home</a>
+            <a href="learn-programming.html">Learn Programming</a>
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+        </nav>
+    </header>
+    <nav class="lang-navbar">
+        <a href="html.html" class="active">HTML</a>
+        <a href="css.html">CSS</a>
+        <a href="javascript.html">JavaScript</a>
+        <a href="cpp.html">C++</a>
+    </nav>
+    <main style="display: flex;">
+        <aside class="sidebar">
+            <h3>HTML Roadmap</h3>
+            <ul id="topic-list">
+                <li><a href="#" class="active" onclick="showTopic('intro', event)">Introduction to HTML</a></li>
+                <li><a href="#" onclick="showTopic('structure', event)">HTML Document Structure</a></li>
+                <li><a href="#" onclick="showTopic('tags', event)">Tags & Elements</a></li>
+                <li><a href="#" onclick="showTopic('attributes', event)">Attributes</a></li>
+                <li><a href="#" onclick="showTopic('text', event)">Text Formatting</a></li>
+                <li><a href="#" onclick="showTopic('links', event)">Links</a></li>
+                <li><a href="#" onclick="showTopic('images', event)">Images</a></li>
+                <li><a href="#" onclick="showTopic('lists', event)">Lists</a></li>
+                <li><a href="#" onclick="showTopic('tables', event)">Tables</a></li>
+                <li><a href="#" onclick="showTopic('forms', event)">Forms</a></li>
+                <li><a href="#" onclick="showTopic('semantic', event)">Semantic HTML</a></li>
+                <li><a href="#" onclick="showTopic('media', event)">Multimedia</a></li>
+                <li><a href="#" onclick="showTopic('best', event)">Best Practices</a></li>
+            </ul>
+        </aside>
+        <section class="content-area" id="topic-content">
+            <!-- Content will be loaded here -->
+        </section>
+    </main>
+    <script>
+        // Topic data: title, description, code, output image, etc.
+        const topics = {
+            intro: {
+                title: 'Introduction to HTML',
+                desc: 'HTML (HyperText Markup Language) is the standard markup language for creating web pages. It provides the basic structure of sites, which is enhanced and modified by other technologies like CSS and JavaScript.',
+                code: '',
+            },
+            structure: {
+                title: 'HTML Document Structure',
+                desc: 'A basic HTML document includes a doctype declaration, html, head, and body tags. The head contains meta-information, and the body contains the visible content.',
+                code: `<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\">\n    <title>Page Title</title>\n  </head>\n  <body>\n    <h1>Hello, World!</h1>\n  </body>\n</html>`,
+            },
+            tags: {
+                title: 'Tags & Elements',
+                desc: 'HTML uses tags to mark up content. Tags usually come in pairs: opening (<tag>) and closing (</tag>). Elements are the complete structure, including tags and content.',
+                code: `<p>This is a paragraph.</p>\n<a href=\"https://www.example.com\">A link</a>`,
+            },
+            attributes: {
+                title: 'Attributes',
+                desc: 'Attributes provide additional information about elements. They are always included in the opening tag and usually come in name/value pairs like name="value".',
+                code: `<img src=\"logo.png\" alt=\"Logo\">\n<a href=\"https://www.example.com\" target=\"_blank\">Visit Example</a>`,
+            },
+            text: {
+                title: 'Text Formatting',
+                desc: 'HTML provides tags for formatting text, such as <b>, <i>, <u>, <mark>, <sup>, and <sub>.',
+                code: `<b>Bold</b> <i>Italic</i> <u>Underline</u> <mark>Highlight</mark>`,
+            },
+            links: {
+                title: 'Links',
+                desc: 'Links are created using the <a> tag and the href attribute. They allow navigation between pages.',
+                code: `<a href=\"https://www.geeksforgeeks.org\">Visit GeeksforGeeks</a>`,
+            },
+            images: {
+                title: 'Images',
+                desc: 'Images are embedded using the <img> tag with src and alt attributes.',
+                code: `<img src=\"logo.png\" alt=\"Logo\">`,
+            },
+            lists: {
+                title: 'Lists',
+                desc: 'HTML supports ordered (<ol>) and unordered (<ul>) lists. List items are defined with <li>.',
+                code: `<ul>\n  <li>Item 1</li>\n  <li>Item 2</li>\n</ul>`,
+            },
+            tables: {
+                title: 'Tables',
+                desc: 'Tables are created with <table>, <tr> (row), <th> (header), and <td> (data cell) tags.',
+                code: `<table>\n  <tr>\n    <th>Name</th>\n    <th>Age</th>\n  </tr>\n  <tr>\n    <td>Alice</td>\n    <td>24</td>\n  </tr>\n</table>`,
+            },
+            forms: {
+                title: 'Forms',
+                desc: 'Forms collect user input. Common elements: <input>, <textarea>, <select>, <button>.',
+                code: `<form>\n  <input type=\"text\" name=\"username\">\n  <button type=\"submit\">Submit</button>\n</form>`,
+            },
+            semantic: {
+                title: 'Semantic HTML',
+                desc: 'Semantic tags like <header>, <nav>, <main>, <footer>, <article>, <section>, and <aside> describe the structure and meaning of content.',
+                code: `<header>Header</header>\n<nav>Navigation</nav>\n<main>Main Content</main>\n<footer>Footer</footer>`,
+            },
+            media: {
+                title: 'Multimedia',
+                desc: 'HTML5 supports embedding audio, video, and canvas for graphics.',
+                code: `<audio controls>\n  <source src=\"song.mp3\" type=\"audio/mpeg\">\n</audio>\n<video controls width=\"320\" height=\"240\">\n  <source src=\"movie.mp4\" type=\"video/mp4\">\n</video>`,
+            },
+            best: {
+                title: 'Best Practices',
+                desc: 'Use semantic tags, keep code clean and indented, use alt attributes for images, and ensure accessibility.',
+                code: '',
+            },
+        };
+        function showTopic(key, e) {
+            if (e) e.preventDefault();
+            // Sidebar active state
+            document.querySelectorAll('#topic-list a').forEach(a => a.classList.remove('active'));
+            const link = document.querySelector(`#topic-list a[onclick*="'${key}'"]`);
+            if (link) link.classList.add('active');
+            // Content
+            const topic = topics[key];
+            let html = `<div class="topic-title">${topic.title}</div>`;
+            html += `<div class="topic-desc">${topic.desc}</div>`;
+            if (topic.code) {
+                html += `<pre><code>${topic.code.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>`;
+            }
+            if (topic.output) {
+                html += `<div><img src="${topic.output}" alt="Output Example" class="output-img"></div>`;
+            }
+            document.getElementById('topic-content').innerHTML = html;
+        }
+        // Initial load
+        showTopic('intro');
+    </script>
+</body>
+</html> 

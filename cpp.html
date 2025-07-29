@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn C++ - Online Learning Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .lang-navbar {
+            display: flex;
+            justify-content: center;
+            background: #e8f5e9;
+            border-bottom: 2px solid #008000;
+            padding: 0.5em 0;
+            margin-bottom: 2em;
+        }
+        .lang-navbar a {
+            color: #008000;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            margin: 0 2em;
+            padding: 0.5em 1.5em;
+            border-radius: 6px 6px 0 0;
+            transition: background 0.2s, color 0.2s;
+        }
+        .lang-navbar a.active, .lang-navbar a:hover {
+            background: #008000;
+            color: #fff;
+        }
+        .sidebar {
+            width: 260px;
+            min-width: 200px;
+            max-width: 300px;
+            background: #e8f5e9;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,128,0,0.05);
+            margin-right: 2em;
+            padding: 1.5em 1em;
+            position: sticky;
+            top: 2em;
+            height: fit-content;
+        }
+        .sidebar h3 {
+            font-size: 1.1em;
+            color: #008000;
+            margin-bottom: 1em;
+            font-weight: 600;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .sidebar li {
+            margin-bottom: 1em;
+        }
+        .sidebar a {
+            color: #008000;
+            text-decoration: none;
+            font-size: 1.05em;
+            font-weight: 500;
+            transition: color 0.2s;
+            display: block;
+            padding: 0.4em 0.8em;
+            border-radius: 4px;
+        }
+        .sidebar a.active, .sidebar a:hover {
+            background: #c8e6c9;
+            color: #006400;
+        }
+        .content-area {
+            flex: 1 1 0%;
+            max-width: 900px;
+            min-width: 0;
+        }
+        .topic-title {
+            color: #008000;
+            font-size: 2em;
+            font-weight: 600;
+            margin-bottom: 0.5em;
+        }
+        .topic-desc {
+            font-size: 1.1em;
+            margin-bottom: 1.5em;
+        }
+        @media (max-width: 1100px) {
+            .sidebar { display: none; }
+            main { flex-direction: column; align-items: stretch; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="topnav">
+            <span class="logo">Online Learning</span>
+            <a href="index.html">Home</a>
+            <a href="learn-programming.html">Learn Programming</a>
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+        </nav>
+    </header>
+    <nav class="lang-navbar">
+        <a href="html.html">HTML</a>
+        <a href="css.html">CSS</a>
+        <a href="javascript.html">JavaScript</a>
+        <a href="cpp.html" class="active">C++</a>
+    </nav>
+    <main style="display: flex;">
+        <aside class="sidebar">
+            <h3>C++ Roadmap</h3>
+            <ul id="topic-list">
+                <li><a href="#" class="active" onclick="showTopic('intro', event)">Introduction to C++</a></li>
+                <li><a href="#" onclick="showTopic('syntax', event)">Syntax & Variables</a></li>
+                <li><a href="#" onclick="showTopic('datatypes', event)">Data Types</a></li>
+                <li><a href="#" onclick="showTopic('operators', event)">Operators</a></li>
+                <li><a href="#" onclick="showTopic('control', event)">Control Structures</a></li>
+                <li><a href="#" onclick="showTopic('functions', event)">Functions</a></li>
+                <li><a href="#" onclick="showTopic('oop', event)">OOP Concepts</a></li>
+                <li><a href="#" onclick="showTopic('stl', event)">STL</a></li>
+                <li><a href="#" onclick="showTopic('pointers', event)">Pointers & Memory</a></li>
+                <li><a href="#" onclick="showTopic('fileio', event)">File I/O</a></li>
+                <li><a href="#" onclick="showTopic('best', event)">Best Practices</a></li>
+            </ul>
+        </aside>
+        <section class="content-area" id="topic-content">
+            <!-- Content will be loaded here -->
+        </section>
+    </main>
+    <script>
+        const topics = {
+            intro: {
+                title: 'Introduction to C++',
+                desc: 'C++ is a powerful, high-performance programming language used for system/software development and competitive programming.',
+                code: '',
+            },
+            syntax: {
+                title: 'Syntax & Variables',
+                desc: 'C++ syntax is similar to C. Variables must be declared with a type.',
+                code: '#include <iostream>\nint main() {\n  int x = 5;\n  std::cout << x;\n  return 0;\n}',
+            },
+            datatypes: {
+                title: 'Data Types',
+                desc: 'C++ supports int, float, double, char, bool, string, etc.',
+                code: 'int a = 10;\ndouble b = 3.14;\nbool flag = true;',
+            },
+            operators: {
+                title: 'Operators',
+                desc: 'Arithmetic (+, -, *, /), assignment (=, +=, -=), comparison (==, !=, >, <), logical (&&, ||, !), etc.',
+                code: 'int sum = 2 + 3;\nif (a > b) { ... }',
+            },
+            control: {
+                title: 'Control Structures',
+                desc: 'if, else, switch, for, while, do-while, break, continue.',
+                code: 'for (int i = 0; i < 5; i++) {\n  std::cout << i << std::endl;\n}',
+            },
+            functions: {
+                title: 'Functions',
+                desc: 'Functions are reusable blocks of code. Can return values and take parameters.',
+                code: 'int add(int a, int b) {\n  return a + b;\n}',
+            },
+            oop: {
+                title: 'OOP Concepts',
+                desc: 'C++ supports Object-Oriented Programming: classes, objects, inheritance, polymorphism, encapsulation, abstraction.',
+                code: 'class Person {\npublic:\n  string name;\n  int age;\n};',
+            },
+            stl: {
+                title: 'STL',
+                desc: 'The Standard Template Library provides ready-to-use data structures and algorithms.',
+                code: '#include <vector>\nstd::vector<int> v = {1,2,3};',
+            },
+            pointers: {
+                title: 'Pointers & Memory',
+                desc: 'Pointers store memory addresses. Memory management is key in C++.',
+                code: 'int x = 10;\nint* p = &x;\nstd::cout << *p;',
+            },
+            fileio: {
+                title: 'File I/O',
+                desc: 'C++ can read/write files using fstream.',
+                code: '#include <fstream>\nstd::ofstream fout("file.txt");\nfout << "Hello";\nfout.close();',
+            },
+            best: {
+                title: 'Best Practices',
+                desc: 'Use proper naming, comment code, manage memory, use STL, avoid global variables.',
+                code: '',
+            },
+        };
+        function showTopic(key, e) {
+            if (e) e.preventDefault();
+            document.querySelectorAll('#topic-list a').forEach(a => a.classList.remove('active'));
+            const link = document.querySelector(`#topic-list a[onclick*="'${key}'"]`);
+            if (link) link.classList.add('active');
+            const topic = topics[key];
+            let html = `<div class="topic-title">${topic.title}</div>`;
+            html += `<div class="topic-desc">${topic.desc}</div>`;
+            if (topic.code) {
+                html += `<pre><code>${topic.code.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>`;
+            }
+            document.getElementById('topic-content').innerHTML = html;
+        }
+        showTopic('intro');
+    </script>
+</body>
+</html> 

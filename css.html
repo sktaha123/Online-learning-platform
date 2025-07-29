@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn CSS - Online Learning Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .lang-navbar {
+            display: flex;
+            justify-content: center;
+            background: #e8f5e9;
+            border-bottom: 2px solid #008000;
+            padding: 0.5em 0;
+            margin-bottom: 2em;
+        }
+        .lang-navbar a {
+            color: #008000;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            margin: 0 2em;
+            padding: 0.5em 1.5em;
+            border-radius: 6px 6px 0 0;
+            transition: background 0.2s, color 0.2s;
+        }
+        .lang-navbar a.active, .lang-navbar a:hover {
+            background: #008000;
+            color: #fff;
+        }
+        .sidebar {
+            width: 260px;
+            min-width: 200px;
+            max-width: 300px;
+            background: #e8f5e9;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,128,0,0.05);
+            margin-right: 2em;
+            padding: 1.5em 1em;
+            position: sticky;
+            top: 2em;
+            height: fit-content;
+        }
+        .sidebar h3 {
+            font-size: 1.1em;
+            color: #008000;
+            margin-bottom: 1em;
+            font-weight: 600;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .sidebar li {
+            margin-bottom: 1em;
+        }
+        .sidebar a {
+            color: #008000;
+            text-decoration: none;
+            font-size: 1.05em;
+            font-weight: 500;
+            transition: color 0.2s;
+            display: block;
+            padding: 0.4em 0.8em;
+            border-radius: 4px;
+        }
+        .sidebar a.active, .sidebar a:hover {
+            background: #c8e6c9;
+            color: #006400;
+        }
+        .content-area {
+            flex: 1 1 0%;
+            max-width: 900px;
+            min-width: 0;
+        }
+        .topic-title {
+            color: #008000;
+            font-size: 2em;
+            font-weight: 600;
+            margin-bottom: 0.5em;
+        }
+        .topic-desc {
+            font-size: 1.1em;
+            margin-bottom: 1.5em;
+        }
+        @media (max-width: 1100px) {
+            .sidebar { display: none; }
+            main { flex-direction: column; align-items: stretch; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="topnav">
+            <span class="logo">Online Learning</span>
+            <a href="index.html">Home</a>
+            <a href="learn-programming.html">Learn Programming</a>
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+        </nav>
+    </header>
+    <nav class="lang-navbar">
+        <a href="html.html">HTML</a>
+        <a href="css.html" class="active">CSS</a>
+        <a href="javascript.html">JavaScript</a>
+        <a href="cpp.html">C++</a>
+    </nav>
+    <main style="display: flex;">
+        <aside class="sidebar">
+            <h3>CSS Roadmap</h3>
+            <ul id="topic-list">
+                <li><a href="#" class="active" onclick="showTopic('intro', event)">Introduction to CSS</a></li>
+                <li><a href="#" onclick="showTopic('syntax', event)">CSS Syntax & Selectors</a></li>
+                <li><a href="#" onclick="showTopic('colors', event)">Colors, Units, Typography</a></li>
+                <li><a href="#" onclick="showTopic('box', event)">Box Model</a></li>
+                <li><a href="#" onclick="showTopic('display', event)">Display & Position</a></li>
+                <li><a href="#" onclick="showTopic('flexbox', event)">Flexbox</a></li>
+                <li><a href="#" onclick="showTopic('grid', event)">Grid</a></li>
+                <li><a href="#" onclick="showTopic('margin', event)">Margin, Padding, Borders</a></li>
+                <li><a href="#" onclick="showTopic('responsive', event)">Responsive Design</a></li>
+                <li><a href="#" onclick="showTopic('pseudo', event)">Pseudo-classes & Elements</a></li>
+                <li><a href="#" onclick="showTopic('animation', event)">Animations & Transitions</a></li>
+                <li><a href="#" onclick="showTopic('variables', event)">CSS Variables</a></li>
+                <li><a href="#" onclick="showTopic('best', event)">Best Practices</a></li>
+                <li><a href="#" onclick="showTopic('modern', event)">Modern Features</a></li>
+            </ul>
+        </aside>
+        <section class="content-area" id="topic-content">
+            <!-- Content will be loaded here -->
+        </section>
+    </main>
+    <script>
+        const topics = {
+            intro: {
+                title: 'Introduction to CSS',
+                desc: `<b>CSS (Cascading Style Sheets)</b> is a language used to describe the style of an HTML document. CSS controls the layout, colors, fonts, spacing, and overall appearance of web pages. It separates content (HTML) from presentation (CSS), making websites easier to maintain and more flexible.<br><br><b>Why use CSS?</b><ul><li>Consistent look and feel across pages</li><li>Easy to update styles site-wide</li><li>Responsive design for all devices</li></ul>`,
+                code: '',
+            },
+            syntax: {
+                title: 'CSS Syntax & Selectors',
+                desc: `<b>CSS Syntax:</b> CSS is written as <code>selector { property: value; }</code>.<br><br><b>Selectors:</b><ul><li><b>Element selector:</b> Targets all elements of a type. <code>p { color: red; }</code></li><li><b>Class selector:</b> Targets elements with a class. <code>.myClass { ... }</code></li><li><b>ID selector:</b> Targets an element with a specific ID. <code>#myId { ... }</code></li><li><b>Attribute selector:</b> Targets elements with an attribute. <code>input[type="text"] { ... }</code></li><li><b>Combinators:</b> Target elements based on relationships (descendant, child, sibling).</li></ul>`,
+                code: `/* Element selector */
+p { color: red; }
+/* Class selector */
+.myClass { font-weight: bold; }
+/* ID selector */
+#main { background: #eee; }`,
+            },
+            colors: {
+                title: 'Colors, Units, Typography',
+                desc: `<b>Colors:</b> CSS supports named colors (<code>red</code>), HEX (<code>#ff0000</code>), RGB, RGBA, and HSL.<br><b>Units:</b> px, em, rem, %, vw, vh, etc.<br><b>Typography:</b> Control font-family, size, weight, line-height, and alignment.<br><br>Example:`,
+                code: `body {
+  color: #333;
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  text-align: left;
+}`,
+            },
+            box: {
+                title: 'Box Model',
+                desc: `<b>Box Model:</b> Every element is a box: <b>content</b> + <b>padding</b> + <b>border</b> + <b>margin</b>.<br><br>Understanding the box model is key to layout and spacing in CSS.<br><br>Example:`,
+                code: `div {
+  margin: 10px;
+  padding: 20px;
+  border: 2px solid #008000;
+  background: #e8f5e9;
+}`,
+            },
+            display: {
+                title: 'Display & Position',
+                desc: `<b>Display:</b> Controls how elements are rendered.<ul><li><b>block</b>: Starts on a new line, takes full width</li><li><b>inline</b>: Flows with text</li><li><b>inline-block</b>: Like inline, but can set width/height</li><li><b>flex</b>: Flexbox container</li><li><b>grid</b>: Grid container</li><li><b>none</b>: Hides element</li></ul><b>Position:</b> Controls how elements are positioned.<ul><li><b>static</b>: Default</li><li><b>relative</b>: Offset from normal position</li><li><b>absolute</b>: Positioned relative to nearest ancestor</li><li><b>fixed</b>: Fixed to viewport</li><li><b>sticky</b>: Scrolls until a threshold, then sticks</li></ul>`,
+                code: `.box {
+  display: flex;
+  position: relative;
+  top: 10px;
+  left: 20px;
+}`,
+            },
+            flexbox: {
+                title: 'Flexbox',
+                desc: `<b>Flexbox</b> is a layout model for arranging items in a row or column, distributing space, and aligning content.<br><br><b>Main properties:</b><ul><li><code>display: flex</code></li><li><code>flex-direction</code></li><li><code>justify-content</code></li><li><code>align-items</code></li></ul>Example:`,
+                code: `.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.item {
+  flex: 1;
+  padding: 1em;
+  background: #c8e6c9;
+  margin: 0.5em;
+}`,
+            },
+            grid: {
+                title: 'Grid',
+                desc: `<b>CSS Grid</b> is a 2D layout system for creating complex web layouts with rows and columns.<br><br><b>Main properties:</b><ul><li><code>display: grid</code></li><li><code>grid-template-columns</code></li><li><code>grid-template-rows</code></li><li><code>gap</code></li></ul>Example:`,
+                code: `.grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1em;
+}
+.grid-item {
+  background: #e8f5e9;
+  padding: 1em;
+  border: 1px solid #008000;
+}`,
+            },
+            margin: {
+                title: 'Margin, Padding, Borders',
+                desc: `<b>Margin:</b> Space outside the border.<br><b>Padding:</b> Space inside the border.<br><b>Border:</b> Line around the element.<br><br>Example:`,
+                code: `p {
+  margin: 1em 0;
+  padding: 0.5em;
+  border-bottom: 1px solid #eee;
+}`,
+            },
+            responsive: {
+                title: 'Responsive Design',
+                desc: `<b>Responsive design</b> ensures your site looks good on all devices. Use <code>@media</code> queries to change styles based on screen size.<br><br>Example:`,
+                code: `@media (max-width: 600px) {
+  body {
+    font-size: 14px;
+  }
+  .sidebar {
+    display: none;
+  }
+}`,
+            },
+            pseudo: {
+                title: 'Pseudo-classes & Elements',
+                desc: `<b>Pseudo-classes</b> target elements in a specific state (e.g., <code>:hover</code>, <code>:active</code>, <code>:focus</code>).<br><b>Pseudo-elements</b> style parts of an element (e.g., <code>::before</code>, <code>::after</code>, <code>::first-line</code>).<br><br>Example:`,
+                code: `a:hover {
+  color: #008000;
+}
+li::before {
+  content: "→ ";
+  color: #008000;
+}`,
+            },
+            animation: {
+                title: 'Animations & Transitions',
+                desc: `<b>Transitions</b> animate property changes smoothly.<br><b>Animations</b> use keyframes for complex effects.<br><br>Example:`,
+                code: `button {
+  transition: background 0.3s;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}`,
+            },
+            variables: {
+                title: 'CSS Variables',
+                desc: `<b>CSS Variables</b> (custom properties) let you store values for reuse.<br><br>Example:`,
+                code: `:root {
+  --main-color: #008000;
+}
+div {
+  color: var(--main-color);
+}`,
+            },
+            best: {
+                title: 'Best Practices',
+                desc: `<ul><li>Keep CSS organized and modular</li><li>Use classes for reusability</li><li>Minimize <code>!important</code> usage</li><li>Use external stylesheets</li><li>Comment your code</li></ul>`,
+                code: '',
+            },
+            modern: {
+                title: 'Modern Features',
+                desc: `<b>Modern CSS features</b> include:<ul><li><b>calc()</b>: Calculate values dynamically. <code>width: calc(100% - 80px);</code></li><li><b>clamp()</b>: Set a value between a min and max. <code>font-size: clamp(1rem, 4vw, 2rem);</code></li><li><b>aspect-ratio</b>: Set element aspect ratio. <code>aspect-ratio: 16/9;</code></li><li><b>object-fit</b>: Control how images/videos fit. <code>object-fit: cover;</code></li><li><b>backdrop-filter</b>: Apply effects to background. <code>backdrop-filter: blur(8px);</code></li><li><b>scroll-snap</b>: Snap scrolling to elements. <code>scroll-snap-type: x mandatory;</code></li><li><b>Frameworks</b>: Bootstrap, Tailwind CSS, etc.</li></ul>`,
+                code: `img {
+  object-fit: cover;
+  width: 100%;
+  height: 200px;
+}
+.box {
+  backdrop-filter: blur(8px);
+}
+.container {
+  scroll-snap-type: x mandatory;
+}`,
+            },
+        };
+        function showTopic(key, e) {
+            if (e) e.preventDefault();
+            document.querySelectorAll('#topic-list a').forEach(a => a.classList.remove('active'));
+            const link = document.querySelector(`#topic-list a[onclick*="'${key}'"]`);
+            if (link) link.classList.add('active');
+            const topic = topics[key];
+            let html = `<div class="topic-title">${topic.title}</div>`;
+            html += `<div class="topic-desc">${topic.desc}</div>`;
+            if (topic.code) {
+                html += `<pre><code>${topic.code.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>`;
+            }
+            document.getElementById('topic-content').innerHTML = html;
+        }
+        showTopic('intro');
+    </script>
+</body>
+</html> 
